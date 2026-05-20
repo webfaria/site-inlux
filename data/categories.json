@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Brincos",
+    "slug": "brincos",
+    "active": true
+  },
+  {
+    "name": "Pulseiras",
+    "slug": "pulseiras",
+    "active": true
+  },
+  {
+    "name": "Colares",
+    "slug": "colares",
+    "active": true
+  },
+  {
+    "name": "Anéis",
+    "slug": "aneis",
+    "active": true
+  },
+  {
+    "name": "Pingentes",
+    "slug": "pingentes",
+    "active": true
+  }
+]

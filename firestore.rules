@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isProductViewIncrement() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['views', 'updatedAt'])
+        && request.resource.data.views == resource.data.views + 1;
+    }
+
+    match /products/{id} {
+      allow read: if true;
+      allow create, delete: if isSignedIn();
+      allow update: if isSignedIn() || isProductViewIncrement();
+    }
+
+    match /categories/{id} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+
+    match /siteContent/{id} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+  }
+}
