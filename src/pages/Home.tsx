@@ -30,14 +30,14 @@ export const Home = ({ products }: HomeProps) => {
           <p className="text-sm uppercase tracking-[0.3em] text-white/80 mb-4 font-light">Coleção Premium INLUX</p>
           <h1 className="text-display-lg text-white mb-8 uppercase tracking-[0.2em] font-light">Brilho que Perdura</h1>
           <p className="text-lg text-white/95 mb-12 max-w-2xl mx-auto font-light tracking-wide leading-relaxed">Cada peça é uma celebração da sofisticação. Prata pura, design atemporal e qualidade impecável. Inlux: onde a elegância transcende as tendências.</p>
-          <Link to="/category/colares" className="inline-block px-12 py-4 bg-white text-primary font-label-caps uppercase tracking-[0.2em] hover:bg-zinc-100 transition-colors cursor-pointer">
+          <a href="#mais-visualizados" className="inline-block px-12 py-4 bg-white text-primary font-label-caps uppercase tracking-[0.2em] hover:bg-zinc-100 transition-colors cursor-pointer">
             Descubra Agora
-          </Link>
+          </a>
         </div>
       </section>
 
       {/* Most Viewed */}
-      <section className="py-[120px] bg-background">
+      <section id="mais-visualizados" className="scroll-mt-24 py-[120px] bg-background">
         <div className="max-w-[1440px] mx-auto px-16">
           <div className="flex flex-col items-center mb-24 text-center">
             <span className="font-label-caps text-on-tertiary-container mb-4">Seleção Curada</span>
