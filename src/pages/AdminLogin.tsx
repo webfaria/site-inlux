@@ -63,14 +63,14 @@ export const AdminLogin = ({ onLoginSuccess }: AdminLoginProps) => {
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md bg-white p-12 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-zinc-100 flex flex-col items-center"
+        className="w-full max-w-md bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-zinc-100 flex flex-col items-center sm:p-12"
       >
-        <div className="h-16 mb-12">
+        <div className="h-16 mb-8 sm:mb-12">
           <Logo className="h-16" />
         </div>
         
         <h1 className="font-serif text-xl text-zinc-900 tracking-widest uppercase mb-2">Acesso Restrito</h1>
-        <p className="text-[10px] font-label-caps text-zinc-400 mb-10 text-center tracking-[0.2em]">
+        <p className="text-[10px] font-label-caps text-zinc-400 mb-8 text-center tracking-[0.16em] sm:mb-10 sm:tracking-[0.2em]">
           POR FAVOR, INSIRA A SENHA PARA ACESSAR O PAINEL DE CONTROLE
         </p>
 

@@ -29,7 +29,7 @@ export const NavBar = ({ categories }: NavBarProps) => {
   if (isAdmin) return null;
 
   return (
-    <nav className="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 border-b border-zinc-100 h-24 flex items-center">
+    <nav className="bg-white md:bg-white/90 md:backdrop-blur-md fixed top-0 left-0 right-0 z-[100] border-b border-zinc-100 h-24 flex items-center">
       <div className="flex justify-between items-center w-full px-4 md:px-16 max-w-[1440px] mx-auto">
         <div className="flex-1 flex items-center">
           <button
@@ -111,14 +111,14 @@ export const NavBar = ({ categories }: NavBarProps) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/40 z-[60]"
+              className="fixed inset-0 bg-zinc-950/55 z-[90]"
             />
             <motion.div
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 bottom-0 w-[80%] max-w-sm bg-white z-[70] p-8 shadow-2xl"
+              className="fixed top-0 left-0 bottom-0 w-[min(86vw,22rem)] bg-white z-[100] p-8 shadow-2xl overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-12">
                 <Logo className="h-16" />

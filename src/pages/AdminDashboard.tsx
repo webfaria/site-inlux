@@ -438,26 +438,26 @@ export const AdminDashboard = ({
             </div>
           </div>
 
-          <div className="bg-white border border-zinc-100 p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-             <div className="flex items-center justify-between mb-8 pb-6 border-b border-zinc-100">
-               <h3 className="font-serif text-lg text-zinc-900 tracking-wide">Produtos Adicionados Recentemente</h3>
+          <div className="bg-white border border-zinc-100 p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] sm:p-8">
+             <div className="flex flex-col gap-3 mb-6 pb-6 border-b border-zinc-100 sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
+               <h3 className="font-serif text-base text-zinc-900 tracking-wide sm:text-lg">Produtos Adicionados Recentemente</h3>
                <button onClick={() => setActiveSection('Products')} className="text-[10px] font-label-caps text-zinc-400 hover:text-zinc-900 tracking-widest transition-colors cursor-pointer">VER TODOS</button>
              </div>
              <div className="space-y-0">
                {products.slice(-5).reverse().map((p, i) => (
-                 <div key={i} className="flex items-center justify-between py-5 border-b border-zinc-50 last:border-0 hover:bg-zinc-50/50 px-4 -mx-4 transition-colors">
-                   <div className="flex items-center gap-5">
-                     <div className="w-12 h-12 bg-zinc-50 overflow-hidden border border-zinc-100">
+                 <div key={i} className="flex flex-col gap-4 py-5 border-b border-zinc-50 last:border-0 hover:bg-zinc-50/50 px-3 -mx-3 transition-colors sm:flex-row sm:items-center sm:justify-between sm:px-4 sm:-mx-4">
+                   <div className="flex min-w-0 items-center gap-4 sm:gap-5">
+                     <div className="w-12 h-12 shrink-0 bg-zinc-50 overflow-hidden border border-zinc-100">
                        <img src={p.img} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                      </div>
-                     <div>
+                     <div className="min-w-0">
                        <p className="font-serif text-sm text-zinc-900 tracking-wide">{p.title}</p>
                        <p className="text-[9px] font-label-caps text-zinc-400 uppercase tracking-[0.15em] mt-1">
                          {categories.find(c => c.slug === p.category)?.name || p.category}
                        </p>
                      </div>
                    </div>
-                   <div className="text-right flex flex-col items-end gap-1">
+                   <div className="flex flex-row items-center justify-between gap-3 sm:flex-col sm:items-end sm:text-right">
                      <p className="font-serif text-sm text-zinc-900">{p.price}</p>
                      <span className={`text-[8px] font-label-caps px-2 py-0.5 tracking-widest ${p.status === 'ESGOTADO' ? 'bg-error/10 text-error' : 'bg-zinc-100 text-zinc-500'}`}>
                        {p.status || 'EM ESTOQUE'}
@@ -543,7 +543,7 @@ export const AdminDashboard = ({
           </div>
 
           <div className="bg-white border border-zinc-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] overflow-hidden">
-            <div className="px-8 py-6 border-b border-zinc-100">
+            <div className="px-4 py-5 border-b border-zinc-100 sm:px-8 sm:py-6">
               <h3 className="font-serif text-lg text-zinc-900">Gerenciar categorias</h3>
               <p className="text-[10px] font-label-caps text-zinc-400 mt-1">CRIE, EDITE E EXCLUA CATEGORIAS</p>
             </div>
@@ -642,7 +642,7 @@ export const AdminDashboard = ({
           </div>
 
           <div className="bg-white border border-zinc-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] overflow-hidden">
-            <div className="px-8 py-6 border-b border-zinc-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="px-4 py-5 border-b border-zinc-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4 sm:px-8 sm:py-6">
               <div>
                 <h3 className="font-serif text-lg text-zinc-900">
                   {selectedCategory ? `Categoria: ${categories.find((category) => category.slug === selectedCategory)?.name || formatCategoryName(selectedCategory)}` : 'Todas as categorias'}
@@ -653,7 +653,7 @@ export const AdminDashboard = ({
               </div>
               <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-stretch md:items-center w-full md:w-auto">
                 <select
-                  className="border border-zinc-200 rounded px-3 py-2 text-sm font-serif bg-white focus:border-black focus:ring-0 outline-none transition-colors"
+                  className="w-full border border-zinc-200 rounded px-3 py-2 text-sm font-serif bg-white focus:border-black focus:ring-0 outline-none transition-colors md:w-auto"
                   value={selectedCategory || ''}
                   onChange={e => setSelectedCategory(e.target.value || null)}
                 >
@@ -665,7 +665,7 @@ export const AdminDashboard = ({
                 <input
                   type="text"
                   placeholder="Filtrar por nome do produto"
-                  className="border border-zinc-200 rounded px-3 py-2 text-sm font-serif bg-white focus:border-black focus:ring-0 outline-none transition-colors"
+                  className="w-full border border-zinc-200 rounded px-3 py-2 text-sm font-serif bg-white focus:border-black focus:ring-0 outline-none transition-colors md:w-auto"
                   value={productNameFilter}
                   onChange={e => setProductNameFilter(e.target.value)}
                   style={{ minWidth: 180 }}
@@ -744,9 +744,9 @@ export const AdminDashboard = ({
               {termsFeedback}
             </div>
           )}
-          <div className="bg-white border border-zinc-100 p-12 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-            <h3 className="font-serif text-2xl text-zinc-900 mb-2">Editar Termos de Uso</h3>
-            <p className="text-[10px] font-label-caps text-zinc-400 mb-12 tracking-[0.2em]">O TEXTO ABAIXO SERÁ EXIBIDO NA PÁGINA PÚBLICA DE TERMOS</p>
+          <div className="bg-white border border-zinc-100 p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] sm:p-8 lg:p-12">
+            <h3 className="font-serif text-xl text-zinc-900 mb-2 sm:text-2xl">Editar Termos de Uso</h3>
+            <p className="text-[10px] font-label-caps text-zinc-400 mb-8 tracking-[0.16em] sm:mb-12 sm:tracking-[0.2em]">O TEXTO ABAIXO SERÁ EXIBIDO NA PÁGINA PÚBLICA DE TERMOS</p>
             
             <div className="space-y-8">
               <div className="flex gap-4 pb-4 border-b border-zinc-100">
@@ -780,11 +780,11 @@ export const AdminDashboard = ({
                 ref={termsEditorRef}
                 value={termsContent}
                 onChange={setTermsContent}
-                className="w-full min-h-[500px] border border-zinc-200 p-8 text-body-md focus:border-black outline-none transition-colors overflow-y-auto bg-white"
+                className="w-full min-h-[320px] border border-zinc-200 p-4 text-body-md focus:border-black outline-none transition-colors overflow-y-auto bg-white sm:min-h-[500px] sm:p-8"
                 style={{ whiteSpace: 'normal' }}
               />
               
-              <div className="flex justify-end">
+              <div className="flex justify-stretch sm:justify-end">
                 <button 
                   onClick={async () => {
                     setIsSavingTerms(true);
@@ -801,7 +801,7 @@ export const AdminDashboard = ({
                     }
                   }}
                   disabled={isSavingTerms}
-                  className="bg-primary text-on-primary px-12 py-4 font-label-caps tracking-widest hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
+                  className="w-full bg-primary text-on-primary px-6 py-4 font-label-caps tracking-widest hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer sm:w-auto sm:px-12"
                 >
                   {isSavingTerms ? 'SALVANDO...' : 'SALVAR TERMOS'}
                 </button>
@@ -820,9 +820,9 @@ export const AdminDashboard = ({
               {careGuideFeedback}
             </div>
           )}
-          <div className="bg-white border border-zinc-100 p-12 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-            <h3 className="font-serif text-2xl text-zinc-900 mb-2">Editar Guia de Cuidados</h3>
-            <p className="text-[10px] font-label-caps text-zinc-400 mb-12 tracking-[0.2em]">ORIENTAÇÕES SOBRE COMO CUIDAR DAS JOIAS</p>
+          <div className="bg-white border border-zinc-100 p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] sm:p-8 lg:p-12">
+            <h3 className="font-serif text-xl text-zinc-900 mb-2 sm:text-2xl">Editar Guia de Cuidados</h3>
+            <p className="text-[10px] font-label-caps text-zinc-400 mb-8 tracking-[0.16em] sm:mb-12 sm:tracking-[0.2em]">ORIENTAÇÕES SOBRE COMO CUIDAR DAS JOIAS</p>
             
             <div className="space-y-8">
               <div className="flex gap-4 pb-4 border-b border-zinc-100">
@@ -846,10 +846,10 @@ export const AdminDashboard = ({
                 ref={careGuideEditorRef}
                 value={careGuideContent}
                 onChange={setCareGuideContent}
-                className="w-full min-h-[500px] border border-zinc-200 p-8 text-body-md focus:border-black outline-none transition-colors overflow-y-auto bg-white"
+                className="w-full min-h-[320px] border border-zinc-200 p-4 text-body-md focus:border-black outline-none transition-colors overflow-y-auto bg-white sm:min-h-[500px] sm:p-8"
               />
               
-              <div className="flex justify-end">
+              <div className="flex justify-stretch sm:justify-end">
                 <button 
                   onClick={async () => {
                     setIsSavingCareGuide(true);
@@ -866,7 +866,7 @@ export const AdminDashboard = ({
                     }
                   }}
                   disabled={isSavingCareGuide}
-                  className="bg-primary text-on-primary px-12 py-4 font-label-caps tracking-widest hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
+                  className="w-full bg-primary text-on-primary px-6 py-4 font-label-caps tracking-widest hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer sm:w-auto sm:px-12"
                 >
                   {isSavingCareGuide ? 'SALVANDO...' : 'SALVAR GUIA'}
                 </button>
@@ -879,8 +879,8 @@ export const AdminDashboard = ({
 
     if (activeSection === 'Orders') {
       return (
-        <div className="bg-white border border-zinc-100 p-12 text-center">
-          <h3 className="font-serif text-2xl text-zinc-900 mb-4">Pedidos</h3>
+        <div className="bg-white border border-zinc-100 p-6 text-center sm:p-12">
+          <h3 className="font-serif text-xl text-zinc-900 mb-4 sm:text-2xl">Pedidos</h3>
           <p className="text-zinc-500 max-w-xl mx-auto">
             Esta área ainda não possui integrações de pedidos. O menu agora navega corretamente e está pronto para receber essa funcionalidade.
           </p>
@@ -901,7 +901,7 @@ export const AdminDashboard = ({
           </div>
         )}
         <div className="bg-white border border-zinc-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] overflow-hidden">
-          <div className="px-8 py-6 border-b border-zinc-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="px-4 py-5 border-b border-zinc-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4 sm:px-8 sm:py-6">
             <div>
               <h3 className="font-serif text-lg text-zinc-900">Catálogo de Produtos</h3>
               <p className="text-[10px] font-label-caps text-zinc-400 mt-1">
@@ -910,7 +910,7 @@ export const AdminDashboard = ({
             </div>
             <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-stretch md:items-center w-full md:w-auto">
               <select
-                className="border border-zinc-200 rounded px-3 py-2 text-sm font-serif bg-white focus:border-black focus:ring-0 outline-none transition-colors"
+                className="w-full border border-zinc-200 rounded px-3 py-2 text-sm font-serif bg-white focus:border-black focus:ring-0 outline-none transition-colors md:w-auto"
                 value={selectedCategory || ''}
                 onChange={e => setSelectedCategory(e.target.value || null)}
               >
@@ -922,7 +922,7 @@ export const AdminDashboard = ({
               <input
                 type="text"
                 placeholder="Filtrar por nome do produto"
-                className="border border-zinc-200 rounded px-3 py-2 text-sm font-serif bg-white focus:border-black focus:ring-0 outline-none transition-colors"
+                className="w-full border border-zinc-200 rounded px-3 py-2 text-sm font-serif bg-white focus:border-black focus:ring-0 outline-none transition-colors md:w-auto"
                 value={productNameFilter}
                 onChange={e => setProductNameFilter(e.target.value)}
                 style={{ minWidth: 180 }}
@@ -1159,10 +1159,10 @@ export const AdminDashboard = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="flex min-h-screen bg-background"
+      className="min-h-screen bg-background lg:flex"
     >
       {/* Admin Sidebar */}
-      <aside className="w-64 fixed left-0 top-0 bottom-0 border-r border-zinc-200 flex flex-col bg-zinc-50">
+      <aside className="hidden lg:fixed lg:left-0 lg:top-0 lg:bottom-0 lg:z-30 lg:flex lg:w-64 lg:flex-col border-r border-zinc-200 bg-zinc-50">
         <div className="h-24 flex items-center px-8 border-b border-zinc-100 bg-white/80">
           <div className="relative h-20 flex items-center -ml-4">
             <Logo className="h-20" />
@@ -1207,10 +1207,10 @@ export const AdminDashboard = ({
       </aside>
 
       {/* Admin Content */}
-      <main className="ml-64 flex-1">
-        <header className="h-24 flex items-center justify-between px-16 bg-white/[0.98] backdrop-blur-xl border-b border-white/80 shadow-[0_12px_40px_rgba(24,24,27,0.08)] supports-[backdrop-filter]:bg-white/[0.94] sticky top-0 z-20">
-          <div>
-            <h2 className="text-headline-sm uppercase tracking-widest text-xl">
+      <main className="w-full min-w-0 lg:ml-64 lg:flex-1">
+        <header className="sticky top-0 z-20 flex min-h-20 flex-col gap-4 border-b border-white/80 bg-white/[0.98] px-4 py-4 shadow-[0_12px_40px_rgba(24,24,27,0.08)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/[0.94] sm:px-6 lg:h-24 lg:flex-row lg:items-center lg:justify-between lg:px-16 lg:py-0">
+          <div className="min-w-0">
+            <h2 className="font-serif text-lg uppercase tracking-widest sm:text-xl lg:text-2xl">
               {activeSection === 'Dashboard' && 'Visão Geral'}
               {activeSection === 'Categories' && 'Categorias'}
               {activeSection === 'Products' && 'Catálogo de Produtos'}
@@ -1222,7 +1222,35 @@ export const AdminDashboard = ({
               {activeSection === 'Categories' ? 'FILTRE E ACOMPANHE SUA CURADORIA' : 'GERENCIE SUA COLEÇÃO DE LUXO'}
             </p>
           </div>
-          <div className="flex items-center gap-6">
+          <nav className="flex gap-2 overflow-x-auto pb-1 lg:hidden">
+            {[
+              { name: 'Dashboard', label: 'Painel' },
+              { name: 'Categories', label: 'Categorias' },
+              { name: 'Products', label: 'Produtos' },
+              { name: 'Orders', label: 'Pedidos' },
+              { name: 'Terms', label: 'Termos' },
+              { name: 'CareGuide', label: 'Guia' }
+            ].map((item) => (
+              <button
+                key={item.name}
+                type="button"
+                onClick={() => setActiveSection(item.name as any)}
+                className={`shrink-0 px-4 py-2 font-label-caps text-[10px] tracking-[0.16em] transition-colors cursor-pointer ${
+                  item.name === activeSection ? 'bg-zinc-900 text-white' : 'bg-zinc-100 text-zinc-500'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => logout()}
+              className="shrink-0 px-4 py-2 font-label-caps text-[10px] tracking-[0.16em] text-error bg-red-50 cursor-pointer"
+            >
+              Sair
+            </button>
+          </nav>
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:gap-6">
             {activeSection === 'Products' && (
               <button
                 onClick={() => {
@@ -1230,7 +1258,7 @@ export const AdminDashboard = ({
                   resetProductForm();
                   setShowAddModal(true);
                 }}
-                className="bg-primary text-on-primary font-label-caps px-8 py-3 text-[10px] tracking-[0.2em] hover:opacity-90 flex items-center gap-2 cursor-pointer"
+                className="bg-primary text-on-primary font-label-caps px-5 py-3 text-[10px] tracking-[0.16em] hover:opacity-90 flex items-center justify-center gap-2 cursor-pointer sm:px-8 sm:tracking-[0.2em]"
               >
                 <Plus className="w-4 h-4" />
                 NOVO PRODUTO
@@ -1245,7 +1273,7 @@ export const AdminDashboard = ({
                   setCategoryError('');
                   setShowAddCategoryModal(true);
                 }}
-                className="bg-primary text-on-primary font-label-caps px-8 py-3 text-[10px] tracking-[0.2em] hover:opacity-90 flex items-center gap-2 cursor-pointer"
+                className="bg-primary text-on-primary font-label-caps px-5 py-3 text-[10px] tracking-[0.16em] hover:opacity-90 flex items-center justify-center gap-2 cursor-pointer sm:px-8 sm:tracking-[0.2em]"
               >
                 <Plus className="w-4 h-4" />
                 NOVA CATEGORIA
@@ -1254,7 +1282,7 @@ export const AdminDashboard = ({
           </div>
         </header>
 
-        <div className="p-4 md:p-16">
+        <div className="p-4 sm:p-6 lg:p-16">
           {renderAdminContent()}
         </div>
       </main>
@@ -1274,9 +1302,9 @@ export const AdminDashboard = ({
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="relative bg-white w-full max-w-md p-12 shadow-2xl"
+              className="relative bg-white w-full max-w-md p-6 shadow-2xl sm:p-12"
             >
-              <h3 className="text-headline-md uppercase tracking-widest mb-6">
+              <h3 className="font-serif text-xl uppercase tracking-widest mb-6 sm:text-3xl">
                 Confirmar exclusão
               </h3>
               <p className="font-serif text-base text-zinc-700 mb-8 leading-relaxed">
@@ -1284,7 +1312,7 @@ export const AdminDashboard = ({
                   ? `Tem a certeza que deseja excluir o produto "${deleteConfirmData.item.title}"? Esta ação não pode ser desfeita.`
                   : `Tem a certeza que deseja excluir a categoria "${deleteConfirmData.item.name}"? Esta ação não pode ser desfeita.`}
               </p>
-              <div className="pt-8 flex justify-end gap-6">
+              <div className="pt-8 flex flex-col-reverse gap-4 sm:flex-row sm:justify-end sm:gap-6">
                 <button
                   type="button"
                   onClick={() => setShowDeleteConfirmModal(false)}
@@ -1301,7 +1329,7 @@ export const AdminDashboard = ({
                     }
                     setDeleteConfirmData(null);
                   }}
-                  className="bg-error text-white px-12 py-4 font-label-caps tracking-widest hover:bg-red-700 transition-colors cursor-pointer"
+                  className="bg-error text-white px-6 py-4 font-label-caps tracking-widest hover:bg-red-700 transition-colors cursor-pointer sm:px-12"
                 >
                   Confirmar exclusão
                 </button>
@@ -1319,12 +1347,12 @@ export const AdminDashboard = ({
               setShowAddModal(false);
               resetProductForm();
             }} className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="relative bg-white w-full max-w-2xl p-12 shadow-2xl overflow-y-auto max-h-[90vh]">
-              <h3 className="text-headline-md uppercase tracking-widest mb-8">
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="relative bg-white w-full max-w-2xl p-5 shadow-2xl overflow-y-auto max-h-[90vh] sm:p-8 lg:p-12">
+              <h3 className="font-serif text-xl uppercase tracking-widest mb-6 sm:mb-8 sm:text-3xl">
                 {editingProductId !== null ? 'Editar Produto' : 'Adicionar Novo Produto'}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="flex flex-col space-y-2">
                     <label className="font-label-caps text-[10px] text-zinc-400">Título</label>
                     <input required type="text" value={newProduct.title} onChange={e => setNewProduct({ ...newProduct, title: e.target.value })} className="border-b border-zinc-200 focus:border-black outline-none px-0 py-2 font-serif" />
@@ -1338,7 +1366,7 @@ export const AdminDashboard = ({
                     </select>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="flex flex-col space-y-2">
                     <label className="font-label-caps text-[10px] text-zinc-400">Coleção</label>
                     <input type="text" value={newProduct.collection} onChange={e => setNewProduct({ ...newProduct, collection: e.target.value })} className="border-b border-zinc-200 focus:border-black outline-none px-0 py-2 font-serif" />
@@ -1356,7 +1384,7 @@ export const AdminDashboard = ({
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="flex flex-col space-y-2">
                     <label className="font-label-caps text-[10px] text-zinc-400">Referência (REF)</label>
                     <input required type="text" value={newProduct.ref} onChange={e => setNewProduct({ ...newProduct, ref: e.target.value })} placeholder="Ex.: AUR-0045" className="border-b border-zinc-200 focus:border-black outline-none px-0 py-2 font-serif" />
@@ -1370,7 +1398,7 @@ export const AdminDashboard = ({
                     </select>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="flex flex-col space-y-2">
                     <label className="font-label-caps text-[10px] text-zinc-400">Material (Para Filtro)</label>
                     <select value={newProduct.material} onChange={e => setNewProduct({ ...newProduct, material: e.target.value as any })} className="border-b border-zinc-200 focus:border-black outline-none px-0 py-2 font-serif bg-transparent">
@@ -1380,7 +1408,7 @@ export const AdminDashboard = ({
                   </div>
                 </div>
                 <div className="flex flex-col space-y-2">
-                  <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <label className="font-label-caps text-[10px] text-zinc-400">Descrição do Produto</label>
                     <button 
                       type="button"
@@ -1416,8 +1444,8 @@ export const AdminDashboard = ({
                 </div>
                 <div className="flex flex-col space-y-3">
                   <label className="font-label-caps text-[10px] text-zinc-400">Imagem do produto</label>
-                  <div className="grid grid-cols-[120px_1fr] gap-4 items-stretch">
-                    <div className="w-[120px] aspect-square bg-zinc-50 border border-zinc-200 overflow-hidden flex items-center justify-center">
+                  <div className="grid grid-cols-1 gap-4 items-stretch sm:grid-cols-[120px_1fr]">
+                    <div className="w-full max-w-[160px] aspect-square bg-zinc-50 border border-zinc-200 overflow-hidden flex items-center justify-center sm:w-[120px]">
                       {(imagePreviewUrl || newProduct.img) ? (
                         <img
                           src={imagePreviewUrl || newProduct.img}
@@ -1463,12 +1491,12 @@ export const AdminDashboard = ({
                 {productError && (
                   <p className="text-sm text-red-600">{productError}</p>
                 )}
-                <div className="pt-8 flex justify-end gap-6">
+                <div className="pt-8 flex flex-col-reverse gap-4 sm:flex-row sm:justify-end sm:gap-6">
                   <button type="button" onClick={() => {
                     setShowAddModal(false);
                     resetProductForm();
                   }} className="font-label-caps text-zinc-400 hover:text-black cursor-pointer">Cancelar</button>
-                  <button type="submit" disabled={isSavingProduct} className="bg-black text-white px-12 py-4 font-label-caps tracking-widest hover:bg-zinc-800 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                  <button type="submit" disabled={isSavingProduct} className="bg-black text-white px-6 py-4 font-label-caps tracking-widest hover:bg-zinc-800 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed sm:px-12">
                     {isSavingProduct ? 'Salvando...' : editingProductId !== null ? 'Salvar Alteracoes' : 'Salvar Produto'}
                   </button>
                 </div>
@@ -1486,8 +1514,8 @@ export const AdminDashboard = ({
               setEditingCategorySlug(null);
               setCategoryError('');
             }} className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="relative bg-white w-full max-w-xl p-12 shadow-2xl overflow-y-auto max-h-[90vh]">
-              <h3 className="text-headline-md uppercase tracking-widest mb-8">
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="relative bg-white w-full max-w-xl p-5 shadow-2xl overflow-y-auto max-h-[90vh] sm:p-8 lg:p-12">
+              <h3 className="font-serif text-xl uppercase tracking-widest mb-6 sm:mb-8 sm:text-3xl">
                 {editingCategorySlug ? 'Editar Categoria' : 'Cadastrar Nova Categoria'}
               </h3>
               <form onSubmit={handleCategorySubmit} className="space-y-6">
@@ -1509,13 +1537,13 @@ export const AdminDashboard = ({
                 {categoryError && (
                   <p className="text-sm text-red-600">{categoryError}</p>
                 )}
-                <div className="pt-8 flex justify-end gap-6">
+                <div className="pt-8 flex flex-col-reverse gap-4 sm:flex-row sm:justify-end sm:gap-6">
                   <button type="button" onClick={() => {
                     setShowAddCategoryModal(false);
                     setEditingCategorySlug(null);
                     setCategoryError('');
                   }} className="font-label-caps text-zinc-400 hover:text-black cursor-pointer">Cancelar</button>
-                  <button type="submit" disabled={isSavingCategory} className="bg-black text-white px-12 py-4 font-label-caps tracking-widest hover:bg-zinc-800 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                  <button type="submit" disabled={isSavingCategory} className="bg-black text-white px-6 py-4 font-label-caps tracking-widest hover:bg-zinc-800 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed sm:px-12">
                     {isSavingCategory ? 'Salvando...' : editingCategorySlug ? 'Salvar Alteracoes' : 'Salvar Categoria'}
                   </button>
                 </div>
