@@ -89,6 +89,31 @@ npm run build
 
 Depois envie todo o conteúdo da pasta `dist/` para `public_html/` na Hostinger.
 
+## 7. Deploy pelo GitHub Actions
+
+Como o arquivo `.env` nao vai para o GitHub, cadastre as mesmas variaveis no repositorio em:
+
+`Settings > Secrets and variables > Actions > Variables`
+
+Variaveis obrigatorias:
+
+```txt
+VITE_FIREBASE_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID
+VITE_FIREBASE_MESSAGING_SENDER_ID
+VITE_FIREBASE_APP_ID
+VITE_FIREBASE_ADMIN_EMAIL
+```
+
+O workflow tambem aceita essas chaves como `Secrets`, mas `Variables` costuma ser suficiente porque a configuracao Web do Firebase e publica no navegador.
+
+Se o painel funcionar localmente e falhar apenas na Hostinger, confira tambem no Firebase:
+
+`Authentication > Settings > Authorized domains`
+
+Adicione o dominio usado em producao, por exemplo `seudominio.com.br` e `www.seudominio.com.br`.
+
 ## Observações importantes
 
 - Não envie o arquivo `.env` para o GitHub.

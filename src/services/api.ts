@@ -298,6 +298,12 @@ export const getApiErrorMessage = (error: unknown, fallback: string) => {
   if (code === 'auth/operation-not-allowed') {
     return 'Ative o metodo Email/password no Firebase Authentication.';
   }
+  if (code === 'auth/unauthorized-domain') {
+    return 'Este dominio nao esta autorizado no Firebase Authentication. Adicione o dominio da Hostinger em Authentication > Settings > Authorized domains.';
+  }
+  if (code === 'auth/api-key-not-valid' || code === 'auth/invalid-api-key') {
+    return `${fallback} A chave VITE_FIREBASE_API_KEY publicada nao e valida. Confira as variaveis do GitHub Actions e gere um novo deploy.`;
+  }
   if (code === 'auth/too-many-requests') {
     return 'Muitas tentativas seguidas. Aguarde alguns minutos ou redefina a senha.';
   }
@@ -323,6 +329,12 @@ export const getApiErrorMessage = (error: unknown, fallback: string) => {
     }
     if (error.message.includes('auth/invalid-credential') || error.message.includes('auth/wrong-password')) {
       return 'E-mail ou senha incorretos. Se tiver duvida, redefina a senha pelo Firebase.';
+    }
+    if (error.message.includes('auth/unauthorized-domain')) {
+      return 'Este dominio nao esta autorizado no Firebase Authentication. Adicione o dominio da Hostinger em Authentication > Settings > Authorized domains.';
+    }
+    if (error.message.includes('auth/api-key-not-valid') || error.message.includes('auth/invalid-api-key')) {
+      return `${fallback} A chave VITE_FIREBASE_API_KEY publicada nao e valida. Confira as variaveis do GitHub Actions e gere um novo deploy.`;
     }
     if (error.message.includes('Firebase')) {
       return `${fallback} Verifique as variaveis VITE_FIREBASE_* e as regras do Firebase.`;
